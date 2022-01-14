@@ -3,8 +3,8 @@
 class XML
 {
 
-    protected $atributos;
-    protected $rules;
+    public $atributos;
+    public $rules;
 
     function __construct()
     {
@@ -12,7 +12,7 @@ class XML
         $this->rules = array();
     }
 
-    protected function setSatFormat($value)
+    public function setSatFormat($value)
     {
         $aux = trim(strip_tags($value));
         if (!XML::isUtf8($aux)) {
@@ -49,7 +49,7 @@ class XML
     }
 
     //Resolver funcionalidad
-    private function setAtribute($attr, $value)
+    public function setAtribute($attr, $value)
     {
         $this->atributos[] = ($attr != 'TipoDeComprobante') ? $this->setSatFormat($value) : $value;
     }
@@ -61,7 +61,7 @@ class XML
             if (($this->rules[$key] == 'R') && (strlen($this->atributos[$key]) <= 0)) :
                 throw new Exception('Atributo ' . $key . ' de ' . get_class($this) . ' es requerido por el SAT');
             else :
-                if ((($this->rules[$key] == 'O') || ($this->rules[$key] == 'R')) && (strlen($this->atributos[$key]) > 0))
+                
                     $conenido .= $key . '="' . $value . '" ';
             endif;
         endforeach;

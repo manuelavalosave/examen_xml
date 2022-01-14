@@ -5,7 +5,7 @@ class Emisor extends XML
 
     public $regimenFiscal;
 
-    protected function __construct()
+    public function __construct()
     {
         $this->atributos = [];
         $this->atributos['Nombre'] = '';

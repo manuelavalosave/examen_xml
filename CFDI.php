@@ -6,17 +6,20 @@ include_once './Classes/Emisor.php';
 
 class CFDI
 {
-    protected $comprobante;
-    protected $xml;
 
-    function __construct()
+    public $emisor;
+    public $comprobante;
+    public $xml;
+    
+
+   public function __construct()
     {
         $this->comprobante = new Comprobante();
         $this->emisor = new Emisor();
     }
 
 
-    private static function getNode()
+    public  function getNode()
     {
         $this->xml = '<?xml version="1.0" encoding="UTF-8"?> <cfdi:Comprobante  xmlns:cfdi="http://www.sat.gob.mx/cfd/3"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" ' . $this->comprobante->getAtributes() . ' >';
         $this->xml .= $this->emisor->getNode(); 
